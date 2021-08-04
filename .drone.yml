@@ -23,11 +23,11 @@ steps:
       from_secret: docker_password
     tags: latest
 
-# trigger:
-  # event:
-  # - cron
-  # cron:
-  # - starwars_latest
+trigger:
+  event:
+  - cron
+  cron:
+  - starwars_latest
 
 ---
 
