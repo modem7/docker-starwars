@@ -1,0 +1,384 @@
+<html>
+
+
+<!-- Mirrored from www.asciimation.co.nz/asciimation/ascii_faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Aug 2021 12:29:44 GMT -->
+<head>
+<title>STAR WARS ASCIIMATION - Frequently Asked Questions</title>
+<meta name="description" content="S T A R W A R S In a way you've never seen before">
+<meta name="keywords" content="star wars text ascii asciimation animation">
+<meta name="author" content="Simon Jansen">
+</head>
+
+<!-- Monday 2nd October 2000 -->
+
+<body text="#FFCC00" bgcolor="#000000" link="#4444FF" vlink="#336666" alink="#6600CC">
+
+<center><img src="starwars.jpg" alt="Star Wars Asciimation"></center>
+
+<br>
+<center><hr size=1 width="50%"></center>
+<br>
+
+<center><img src="faq.jpg" alt="Frequently asked questions"></center>
+<br>
+<center><font size=-1 face="Arial"><a href="../index-2.html">Back to ASCIIMATION main page</a></font></center>
+<br>
+<center><hr SIZE=1 WIDTH="50%"></center>
+
+<table border=0 width=487 align="center"><tr><td><br>
+<font face="arial, helvetica, sans-serif">
+
+<br>
+The updated player?
+<br>
+<font color="white">The new player makes use of a feature of modern browsers which allows the sending of compressed pages. The main 
+index page is written in php to allow this. On the client side some simple Javascript is used to play the file. This was first 
+implemented by my friend Dave who, over a beer, said he could re-write it to not use Java easily. The code has been tweaked by various 
+people including my workmate Orion and my friend Melodie. Despite this we still can't get things to display consistently on 
+different browsers because they all use slightly different fonts. This means working out the exact size of the movie to be able to 
+arrange the page around it is a problem. The page is arranged to look best in Firefox. </font>
+<br>
+
+<br>
+Why doesn't the asciimation work properly or even at all?
+<br>
+<font color="white">Most of the problems can be solved by trying a later version of your browser!</font>
+<br>
+<br>
+<font color="white">The following advice was sent to me by a helpful Macintosh user:</font>
+<br>
+<br>
+<font color="white">"I'm on a Macintosh, and was only able to get the applet to play reliably using Sun's free HotJava 3.0 browser." This is available at <a href="http://java.sun.com/products/hotjava/3.0/">http://java.sun.com/products/hotjava/3.0/</a>
+</font>
+<br>
+
+<br>
+Why (oh God, why)?
+<br>
+<font color="white">Well, it seemed like a good idea at the time.</font>
+<br>
+
+<br>
+Where did the idea come from?
+<br>
+<font color="white">A friend of mine in the UK sent me an email one day containing a joke. The idea was to size your window around the first picture in the joke then hit the pagedown key to display the next picture and so on. The result was a crude (i
+n more ways that one) animation. I tried a few experiments to see how far the idea could be taken.</font>
+<br>
+
+<br>
+Why is it called asciimation?
+<br>
+<font color="white">I don't know if it had a name before. I call it ASCIIMATION as it is really an ASCII animation. I searched the Internet and found there are many small ASCII animations around which I think use JavaScript to display them. Has anyone
+ else out there used Java 1.1 applets or done larger animations? I'd like to hear about it. Especially about how you can get applets to behave properly in different browsers.</font>
+<br>
+
+<br>
+When was the asciimation started?
+<br>
+<font color="white">I started it in July 1997.</font>
+<br>
+
+<br>
+How how is it done?
+<br>
+<font color="white">The asciimation is achieved by displaying frames of ASCII text one after the other at a given rate. Each frame is a fixed number of characters wide by a fixed number of lines high. The frames are put together into a standard text f
+ile. That text file is then converted to a slightly different format and stored in compressed form. A player application simply reads each frame in sequence from the modified text file and displays it on the screen for a short period of time. </font>
+<br>
+
+<br>
+How do I write the asciimation text file?
+<br>
+<font color="white">This is the time consuming part! An asciimation consists of a number of frames just like any animation. Before you can have a film you must have a large number of frames. Before you start drawing your frames you need to decide how 
+big they will be. For example mine are 67 columns by 14 rows. After you decide on the size you can start drawing your frames.</font>
+<br>
+
+<br>
+Text editors.
+<br>
+<font color="white">To draw the frames you'll need a text editor. You can use Notepad or a similar simple editor but I use the editor from a code development tool. Using a more complicated editor will allow you to handle larger text files and provide 
+you with useful features such as cut, copy and paste, search and replace and keystroke recording.</font>
+<br>
+
+<br>
+Shots.
+<br>
+<font color="white">The entire asciimation can be thought of as a number of shots just like any other film or animation. Each shot consists of a number of frames. One shot is where the changes between frames in that shot are small. For example a chara
+cter talking and moving his arms will be contained in one shot. But going from a character such as C3PO talking in a corridor to a scene of a Star Destroyer in space is a change in shots. I usually work on one shot at a time.</font>
+<br>
+
+<br>
+Frame separators.
+<br>
+<font color="white">The frames in a shot are kept apart from each other by a line of text called a separator. The separator is simply a line with an '*' at each end. No other text can appear on that line because this line is not part of the frame. Lat
+er, during encoding, the line is replaced with a number which I describe below. The separator line goes before the frame. So the first line in your text file will be the separator. The last line of your text file will not be a separator. </font>
+<br>
+
+<br>
+Drawing frames.
+<br>
+<font color="white">I usually start with the first frame in the shot. I then decide how long that frame needs to be on screen. My player program runs at 15 frames per second so I copy and paste the frame 15 times for each second it is to appear. After
+ I have the first frames there are several ways to make the frames for the rest of the shot. Of course all the ASCII in your frames must appear within the size boundaries you decided on.</font>
+<br>
+
+<br>
+Drawing frames: Method one.
+<br>
+<font color="white">The first method is to change the last frame I just added making some small adjustment to it to show movement or talking. I then copy and paste that new frame as I did above. You simply repeat this until the end of the shot.</font>
+<br>
+
+<br>
+Drawing frames: Method two.
+<br>
+<font color="white">The second method is similar to the first but instead of using a copy X times/modify/copy X times method I copy all the frames for that scene at once. Then when I want to modify frames I go to the frame to change and record the key
+strokes I use to change the frame. I then playback those keystrokes over the following frames. This method is used a lot when I am modifying existing frames. </font>
+<br>
+
+<br>
+Drawing frames: Method three.
+<br>
+<font color="white">The third method is the most painful. The first two methods work great for shots such as talking where you may have the same frame exactly repeated 30 times (for 2 seconds on screen). Some shots however need changes between every f
+rame. This is the case for panning or tracking shots or shots with fast movement like explosions. Here I find it is best to copy and modify frames one at a time. Shots like the opening scene with the Star Destroyer chasing the Corvette with blaster bo
+lts and explosions are particularly tricky and time consuming!</font>
+<br>
+
+<br>
+<font color="white">Using these methods and other tricks you pick up along the way you build up _all_ the frames that are present in your film. Later on I encode the film to remove a lot of the frames. Instead of storing all frames that are the same i
+n one shot I store one frame and store a number for how long it should be on screen. The number is stored in place of the separator line between frames. This reduces the overall size of the final text file. I could write the original text file in this
+ way but I prefer to have all the frames in the file I'm editing.</font>
+<br>
+
+<br>
+What do the frames and the text file look like during editing?
+<br>
+<font color="white">
+Here are two frames from the text file.<br></font>
+<font color="white" face="courier">
+<tt>
+<pre>
+*                                                                 *
+                                     /~\                           
+                                    |oo )                          
+                                    _\=/_                          
+                    ___            /  _  \                         
+                   / ()\          //|/.\|\\                        
+                 _|_____|_        \\ \_/  ||                       
+                | | === | |        \|\ /| ||                       
+                |_|  O  |_|        # _ _/ #                        
+                 ||  O  ||          | | |                          
+                 ||__*__||          | | |                          
+                |~ \___/ ~|         []|[]                          
+                /=\ /=\ /=\         | | |                          
+________________[_]_[_]_[_]________/_]_[_\_________________________
+*                                                                 *
+                                     /~\                           
+                                    |oo )                          
+                                    _\=/_                          
+                    ___         #  /  _  \                         
+                   / ()\        \\//|/.\|\\                        
+                 _|_____|_       \/  \_/  ||                       
+                | | === | |         |\ /| ||                       
+                |_|  O  |_|         \_ _/ #                        
+                 ||  O  ||          | | |                          
+                 ||__*__||          | | |                          
+                |~ \___/ ~|         []|[]                          
+                /=\ /=\ /=\         | | |                          
+________________[_]_[_]_[_]________/_]_[_\_________________________
+</pre>
+</tt>
+</font>
+<br>
+<br>
+<font color="white">Note that the separator is at the top of each frame so there is no separator after the last frame.</font>
+<br>
+
+<br>
+How is the text file converted before being compressed?
+<br>
+<font color="white">Since a lot of the frames are identical I use a form of run length encoding on them. I look at the frames and see how many identical ones appear in a sequence. Instead of storing them all I store one of them and add a number inside
+ the frame so the player knows how long it should be on screen. This number will be the same as how many times that frame appeared in the original text file.</font>
+<br>
+
+<br>
+Where is this number stored?
+<br>
+<font color="white">I remove the separator line from the top of each frame and replace it with the number. This line is not displayed as part of the asciimation.</font>
+<br>
+
+<br>
+What do the frames and the text file look like after encoding?
+<br>
+<font color="white">
+Here are two frames from the encoded text file.<br></font>
+<font face="courier" color="white">
+<tt>
+<pre>
+1                                                                  
+                                     /~\                           
+                                    |oo )                          
+                                    _\=/_                          
+                    ___            /  _  \                         
+                   / ()\          //|/.\|\\                        
+                 _|_____|_        \\ \_/  ||                       
+                | | === | |        \|\ /| ||                       
+                |_|  O  |_|        # _ _/ #                        
+                 ||  O  ||          | | |                          
+                 ||__*__||          | | |                          
+                |~ \___/ ~|         []|[]                          
+                /=\ /=\ /=\         | | |                          
+________________[_]_[_]_[_]________/_]_[_\_________________________
+5                                                                  
+                                     /~\                           
+                                    |oo )                          
+                                    _\=/_                          
+                    ___         #  /  _  \                         
+                   / ()\        \\//|/.\|\\                        
+                 _|_____|_       \/  \_/  ||                       
+                | | === | |         |\ /| ||                       
+                |_|  O  |_|         \_ _/ #                        
+                 ||  O  ||          | | |                          
+                 ||__*__||          | | |                          
+                |~ \___/ ~|         []|[]                          
+                /=\ /=\ /=\         | | |                          
+________________[_]_[_]_[_]________/_]_[_\_________________________
+</pre>
+</tt>
+</font>
+<br>
+<br>
+<font color="white">The 1 in the first frame means it will appear on screen for 1 * 1/15 of a second. The 5 in the second frame means it will appear on screen for 5 * 1/15 of a second.</font>
+<br>
+
+<br>
+How big is each frame in this asciimation?
+<br>
+<font color="white">Each frame is 67 characters wide and 13 lines high. You don't count the separator.</font>
+<br>
+
+<br>
+Why 67 and 13?
+<br>
+<font color="white">When I first started doing this I created a few frames using the Notepad editor. I never gave much thought to the size, it just looked about right. By the time I did think about it I had too many frames to redraw so the size stayed
+ as it was. </font>
+<br>
+
+<br>
+How big is the original text file currently?
+<br>
+<font color="white">At the moment it is 230720 lines which take up 10820 Kb when uncompressed.</font>
+<br>
+
+<br>
+How many frames are there?
+<br>
+<font color="white">Currently 16481.</font>
+<br>
+
+<br>
+How many frames are there after encoding?
+<br>
+<font color="white">Currently 3592.</font>
+<br>
+
+<br>
+What is the frame rate?
+<br>
+<font color="white">15 frames per second. This figure is really just an estimate. The pause between frames is in multiples of 1/15 sec but I do not take into account the processing time for reading and displaying frames. The processing time should be 
+negligible.</font>
+<br>
+
+<br>
+Why 15 per second?
+<br>
+<font color="white">Again because after I had started that was the rate I was stuck with. Using the pagedown key to animate means that the speed varies with how fast your computer is. On my computer holding down the key gave me 15 frames per second. T
+o view the asciimation at the correct speed on other machines I had to have a player program to play it at a constant speed.</font>
+<br>
+
+<br>
+What is the player program?
+<br>
+<font color="white">The player program was written by me in Java 1.1 and it this that is used to play the asciimation over the WWW.</font>
+<br>
+
+<br>
+<font color="white">Unfortunately my version of the player program was not a good example of Java code (well, it was my first applet)! Many, many thanks to Eduardo Fernandez who took my code and fixed and improved it for me!</font>
+<br>
+
+<br>
+How do these player programs work?
+<br>
+<font color="white">The player simply opens the text files containing the frames and reads each frame into a buffer. The first line of the frame is a number to determine how long the frame is on screen. The remaining 13 lines make up one frame. The fr
+ame is then drawn to the screen. After a delay, determined by the stored number, the next frame is drawn to the screen and so on until the end of the file is reached. Using Java 1.1 allowed me to use a compressed .jar file for the applet. The .jar fil
+e contains the data and program (yes, and source!) compressed into one file to make it easier and faster to download. Because the files containing the frames are only ASCII text they can be compressed to a very small fraction of the original size.</fo
+nt>
+<br>
+
+<br>
+How often is it added to?
+<br>
+<font color="white">Not very often. You have to be _very_ bored to do something like this!</font>
+<br>
+
+<br>
+How do you add to it?
+<br>
+<font color="white">The size of the file outgrew Notepad a long time ago. I now use the text editor within Microsoft Development Studio. Adding frames is just a matter of 'drawing' the new frame then copying it 15 times for every second it is to remai
+n on screen. I also remove all trailing white space from the file which makes quite a difference to its overall size.</font>
+<br>
+
+<br>
+When will it be finished?
+<br>
+<font color="white">Don't hold your breath waiting!</font>
+<br>
+
+<br>
+What font does it use?
+<br>
+<font color="white">It should really use Courier as this was the font I started writing it in. Unfortunately now the standard font is Courier New which is why the animation isn't quite as I intended. It makes it look a little too stretched vertically.
+</font>
+<br>
+
+<br>
+Is the source code for the player and the text file available?
+<br>
+<font color="white">I can't really make these available yet. I don't have as much time as I would like for support or questions on the applet or the text file. I do plan to make them available when they are complete.</font>
+<br>
+
+<br>
+Can I offer to help to finish it?
+<br>
+<font color="white">Well, I would really like to finish this myself. I know that may take a long time but I ask people to be patient. There are three other, sorry four other, Star Wars films though if people are interested in asciimating those!</font>
+<br>
+
+<br>
+Wasn't Princess Leia on the other side of R2 when she gave him the Death Star plans?
+<br>
+<font color="white">Errr... Ummm... Well, yes. I guess the film was reversed during printing.</font>
+<br>
+
+<br>
+So what else do you do for fun?
+<br>
+<font color="white">I do have various other projects I am working on described online. I play around a bit with programming for Palm PDAs and one of my games, 'Bomb Canada', is available free for download at <a href="../palm"
+>http://www.asciimation.co.nz/palm.</a> Also described on that page are various other unfinished programming projects as well as a small Palm controlled robot I have built.<br>
+<br>
+I am also currently building a jet engine from an old turbocharger and this is described at <a href="../turbine/index.html">http://www.asciimation.co.nz/turbine.</a><br>
+<br>
+And I invented the worlds first Jet powered Beer Cooler which is shown here <a href="../beer">http://www.asciimation.co.nz/beer.</a><br>
+<br>
+Of course I do have other interests not described online! </font>
+</td></tr></table><p>
+
+<center><hr SIZE=1 WIDTH="50%">
+<center><font size=-1 face="Arial"><a href="../index-2.html">Back to ASCIIMATION main page</a></font></center>
+<center><font size=-1 color="#4444FF" face="Arial">
+Email: ascii @ this domain</font></center>
+<center><hr size=1 width="50%"></center>
+<br>
+<center><font size=-2 color="white" face="Arial">Copyright &copy; 1997 - 2006 Simon Jansen</font></center>
+<br>
+</body>
+
+
+<!-- Mirrored from www.asciimation.co.nz/asciimation/ascii_faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Aug 2021 12:29:44 GMT -->
+</html>
