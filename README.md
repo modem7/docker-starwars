@@ -4,6 +4,10 @@
 
 More info can be found here: www.asciimation.co.nz/Blinkenlights
 
+# Container Screenshot
+![image](https://user-images.githubusercontent.com/4349962/128192966-26c74fd7-839c-49ce-b00f-af1050aece90.png)
+
+
 # Configuration
 
 ```bash
