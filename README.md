@@ -4,6 +4,8 @@
 
 More info can be found here: www.asciimation.co.nz/Blinkenlights
 
+Image is based on Nginx stable alpine, and all the content is local to the container.
+
 # Container Screenshot
 ![image](https://user-images.githubusercontent.com/4349962/128192966-26c74fd7-839c-49ce-b00f-af1050aece90.png)
 
