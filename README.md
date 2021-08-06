@@ -4,6 +4,8 @@
 
 More info can be found here: www.asciimation.co.nz/Blinkenlights
 
+Further notes from Mike Edwards, the author of the player script towel used: Replacement telnet at asciimation.mirkwood.net:23/24. Port 23 is the last released Star Wars asciimation by Simon Jensen, and port 24 is Jansen's other goofy asciimation, The death of Jar Jar Binks. 
+
 Image is based on Nginx stable alpine, and all the content is local to the container.
 
 # Container Screenshot
