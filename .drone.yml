@@ -37,6 +37,14 @@ steps:
       from_secret: docker_password
     tags: latest
 
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_hook
+  when:
+    status: [ success, failure ]
+
 trigger:
   event:
   - cron
@@ -73,6 +81,14 @@ steps:
       from_secret: docker_password
     tags: monthly
 
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_hook
+  when:
+    status: [ success, failure ]
+
 trigger:
   event:
   - cron
@@ -108,6 +124,14 @@ steps:
     password:
       from_secret: docker_password
     tags: stable
+
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_hook
+  when:
+    status: [ success, failure ]
 
 trigger:
   event:
