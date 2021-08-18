@@ -10,6 +10,14 @@ steps:
       - hadolint --version
       - hadolint Dockerfile*
 
+trigger:
+  event:
+    - cron
+  cron:
+    - starwars_latest
+    - starwars_monthly
+    - starwars_stable
+
 ---
 
 kind: pipeline
