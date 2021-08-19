@@ -52,6 +52,13 @@ steps:
       from_secret: slack_hook
   when:
     status: [ success, failure ]
+  template: >
+  
+    [DRONE CI]: ** : /
+    ( -  | )
+   
+    [DRONE CI]: ** : /
+    ( -  | )
 
 trigger:
   event:
