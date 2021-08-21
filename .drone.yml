@@ -9,7 +9,7 @@ platform:
   arch: amd64
 
 steps:
-  - name: Lint Dockerfile
+- name: Lint Dockerfile
     image: hadolint/hadolint:latest-alpine
     pull: if-not-exists
     commands:
@@ -57,7 +57,7 @@ platform:
   arch: amd64
 
 steps:
-  - name: Lint Dockerfile
+- name: Lint Dockerfile
     image: hadolint/hadolint:latest-alpine
     pull: if-not-exists
     commands:
@@ -105,7 +105,7 @@ platform:
   arch: amd64
 
 steps:
-  - name: Lint Dockerfile
+- name: Lint Dockerfile
     image: hadolint/hadolint:latest-alpine
     pull: if-not-exists
     commands:
