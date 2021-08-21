@@ -16,29 +16,29 @@ steps:
       - hadolint --version
       - hadolint Dockerfile*
 
-- name: latest  
-  image: thegeeklab/drone-docker-buildx
-  privileged: true
-  settings:
-    repo: modem7/docker-starwars
-    purge: true
-    compress: true
-    use_cache: true
-    cache_from: "modem7/docker-starwars:latest"
-    platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    tags: latest
+  - name: latest  
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      repo: modem7/docker-starwars
+      purge: true
+      compress: true
+      use_cache: true
+      cache_from: "modem7/docker-starwars:latest"
+      platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      tags: latest
 
-- name: slack
-  image: themaz/drone-slack
-  settings:
-    webhook:
-      from_secret: slack_hook
-  when:
-    status: [ success, failure ]
+  - name: slack
+    image: themaz/drone-slack
+    settings:
+      webhook:
+        from_secret: slack_hook
+    when:
+      status: [ success, failure ]
 
 # trigger:
   # event:
