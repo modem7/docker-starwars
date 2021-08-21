@@ -10,11 +10,11 @@ platform:
 
 steps:
 - name: Lint Dockerfile
-    image: hadolint/hadolint:latest-alpine
-    pull: if-not-exists
-    commands:
-      - hadolint --version
-      - hadolint Dockerfile*
+  image: hadolint/hadolint:latest-alpine
+  pull: if-not-exists
+  commands:
+    - hadolint --version
+    - hadolint Dockerfile*
 
 - name: latest  
   image: thegeeklab/drone-docker-buildx
@@ -58,11 +58,11 @@ platform:
 
 steps:
 - name: Lint Dockerfile
-    image: hadolint/hadolint:latest-alpine
-    pull: if-not-exists
-    commands:
-      - hadolint --version
-      - hadolint Dockerfile*
+  image: hadolint/hadolint:latest-alpine
+  pull: if-not-exists
+  commands:
+    - hadolint --version
+    - hadolint Dockerfile*
 
 - name: monthly  
   image: thegeeklab/drone-docker-buildx
