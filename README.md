@@ -27,7 +27,6 @@ services:
 ```
 
 # Tags
-# Tags
 | Tag | Description |
 | :----: | --- |
 | Latest | Automatically built every week. |
