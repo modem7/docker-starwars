@@ -90,9 +90,6 @@ trigger:
   cron:
   - starwars_monthly
 
-depends_on:
-  - lint
-
 ---
 
 kind: pipeline
@@ -133,6 +130,3 @@ trigger:
   - cron
   cron:
   - starwars_stable
-
-depends_on:
-  - lint
