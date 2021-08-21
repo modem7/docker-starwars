@@ -40,11 +40,11 @@ steps:
   when:
     status: [ success, failure ]
 
-trigger:
-  event:
-    - cron
-  cron:
-    - starwars_latest
+# trigger:
+  # event:
+    # - cron
+  # cron:
+    # - starwars_latest
 
 ---
 
