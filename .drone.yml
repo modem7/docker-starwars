@@ -161,7 +161,7 @@ name: readme
 
 steps:
 - name: pushrm-dockerhub
-  image: chko/docker-pushrm:1
+  image: chko/docker-pushrm
   environment:
     DOCKER_PASS:
       from_secret: DOCKER_PASS
