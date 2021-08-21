@@ -157,7 +157,7 @@ depends_on:
 
 kind: pipeline
 type: docker
-name: stable
+name: readme
 
 steps:
 - name: pushrm-dockerhub
