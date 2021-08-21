@@ -27,8 +27,9 @@ services:
 ```
 
 # Tags
-Latest is automatically built every week.
-
-Monthly is automatically built every month.
-
-Stable is automatically built every year.
+# Tags
+| Tag | Description |
+| :----: | --- |
+| Latest | Automatically built every week. |
+| Monthly | Automatically built every month. |
+| Stable | Automatically built every year. |
