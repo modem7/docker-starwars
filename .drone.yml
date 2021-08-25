@@ -45,11 +45,11 @@ steps:
     when:
       status: [ success, failure ]
 
-# trigger:
-  # event:
-    # - cron
-  # cron:
-    # - starwars_latest
+trigger:
+  event:
+    - cron
+  cron:
+    - starwars_latest
 ---
 
 kind: pipeline
@@ -93,8 +93,8 @@ steps:
     when:
       status: [ success, failure ]
 
-# trigger:
-  # event:
-  # - cron
-  # cron:
-  # - starwars_stable
+trigger:
+  event:
+  - cron
+  cron:
+  - starwars_stable
