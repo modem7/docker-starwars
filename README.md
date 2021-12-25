@@ -31,4 +31,3 @@ services:
 | :----: | --- |
 | Latest | Automatically built every week. |
 | Monthly | Automatically built every month. |
-| Stable | Automatically built every year. |
