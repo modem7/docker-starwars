@@ -29,5 +29,4 @@ services:
 # Tags
 | Tag | Description |
 | :----: | --- |
-| Latest | Automatically built every week. |
-| Monthly | Automatically built every month. |
+| Latest | Latest version |
