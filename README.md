@@ -7,11 +7,15 @@ More info can be found here: www.asciimation.co.nz/Blinkenlights
 
 Further notes from Mike Edwards, the author of the player script towel used: Replacement telnet at asciimation.mirkwood.net:23/24. Port 23 is the last released Star Wars asciimation by Simon Jensen, and port 24 is Jansen's other goofy asciimation, The death of Jar Jar Binks. 
 
-Image is based on Nginx stable alpine, and all the content is local to the container.
+Image is based on nginxinc/nginx-unprivileged, and all the content is local to the container.
 
 # Container Screenshot
 ![image](https://user-images.githubusercontent.com/4349962/128192966-26c74fd7-839c-49ce-b00f-af1050aece90.png)
 
+
+# Breaking change
+Due to changing the image to nginxinc/nginx-unprivileged, the ports have changed from `80` to `8080`. 
+Please update your files accordingly. 
 
 # Configuration
 
@@ -24,7 +28,7 @@ services:
     image: modem7/docker-starwars
     container_name: StarWars
     ports:
-      - 80:80
+      - 8080:8080
 ```
 
 # Tags
