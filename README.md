@@ -3,6 +3,12 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/modem7/docker-starwars) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/modem7/docker-starwars/latest) [![Build Status](https://drone.modem7.com/api/badges/modem7/docker-starwars/status.svg)](https://drone.modem7.com/modem7/docker-starwars)
 [![GitHub last commit](https://img.shields.io/github/last-commit/modem7/docker-starwars)](https://github.com/modem7/docker-starwars)
 
+<div align="center">
+    <h3>Choose Your Side</h3>
+    <img src="https://raw.githubusercontent.com/scarmuega/choose-your-side/master/vader.svg?sanitize=true#gh-dark-mode-only" alt="Vader" height="240">
+    <img src="https://raw.githubusercontent.com/scarmuega/choose-your-side/master/yoda.svg?sanitize=true#gh-light-mode-only" alt="Yoda" height="240">
+</div>
+
 More info can be found here: www.asciimation.co.nz/Blinkenlights
 
 Further notes from Mike Edwards, the author of the player script towel used: Replacement telnet at asciimation.mirkwood.net:23/24. Port 23 is the last released Star Wars asciimation by Simon Jensen, and port 24 is Jansen's other goofy asciimation, The death of Jar Jar Binks. 
