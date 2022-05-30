@@ -10,6 +10,7 @@ updates:
     schedule:
       interval: "daily"
       timezone: "Europe/London"
+      time: "05:00"
     assignees:
       - "modem7"
     labels:
@@ -21,6 +22,7 @@ updates:
       # Check for updates to GitHub Actions every weekday
       interval: "daily"
       timezone: "Europe/London"
+      time: "05:00"
     assignees:
       - "modem7"
     labels:
