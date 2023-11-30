@@ -3,6 +3,8 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/modem7/docker-starwars) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/modem7/docker-starwars/latest) [![Build Status](https://drone.modem7.com/api/badges/modem7/docker-starwars/status.svg)](https://drone.modem7.com/modem7/docker-starwars)
 [![GitHub last commit](https://img.shields.io/github/last-commit/modem7/docker-starwars)](https://github.com/modem7/docker-starwars)
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/modem7)
+
 More info can be found here: www.asciimation.co.nz/Blinkenlights
 
 Further notes from Mike Edwards, the author of the player script towel used: Replacement telnet at asciimation.mirkwood.net:23/24. Port 23 is the last released Star Wars asciimation by Simon Jensen, and port 24 is Jansen's other goofy asciimation, The death of Jar Jar Binks. 
