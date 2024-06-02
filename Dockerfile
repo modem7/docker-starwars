@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1.26.0-alpine
+FROM nginxinc/nginx-unprivileged:1.27.0-alpine
 
 ARG UID=101
 ARG GID=101
