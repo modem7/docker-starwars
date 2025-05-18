@@ -31,6 +31,11 @@ services:
     container_name: StarWars
     ports:
       - 8080:8080
+    restart: unless-stopped
+# If you got this error `"/run/nginx.pid" failed (13: Permission denied)` uncomment the below part
+#    command: >
+#      sh -c "sed -i '5s#/run/nginx.pid#/tmp/nginx.pid#' /etc/nginx/nginx.conf
+
 ```
 
 # Tags
