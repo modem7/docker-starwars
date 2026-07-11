@@ -1,9 +1,11 @@
 # docker-starwars
 
-Self-hosted, self-contained Docker image of the classic
+Self hosted, self contained Docker image of the classic
 [www.asciimation.co.nz/Blinkenlights](https://www.asciimation.co.nz/Blinkenlights)
-ASCII Star Wars animation — the whole thing runs client-side in the
-browser, no external requests, no ads, no analytics.
+ASCII Star Wars animation. I originally just grabbed the files straight off
+the site and stuck them in a container — everything runs client-side in the
+browser, nothing leaves the container, no ads, no analytics phoning home.
+Which is more than you can say for the actual site.
 
 [![status-badge](https://woodpecker.modem7.com/api/badges/4/status.svg?events=push%2Cmanual)](https://woodpecker.modem7.com/repos/4)
 [![Test](https://github.com/modem7/docker-starwars/actions/workflows/test.yml/badge.svg)](https://github.com/modem7/docker-starwars/actions/workflows/test.yml)
@@ -24,7 +26,7 @@ browser, no external requests, no ads, no analytics.
 docker run -d --name starwars -p 8080:8080 modem7/docker-starwars
 ```
 
-Or with Compose:
+Or Compose, if that's more your thing:
 
 ```yaml
 services:
@@ -35,49 +37,47 @@ services:
       - 8080:8080
 ```
 
-Then open `http://localhost:8080`.
+Open `http://localhost:8080` and enjoy.
 
-## What's in the image
+## What's actually in the image
 
-- Content is entirely local to the container — nothing is fetched from
-  `asciimation.co.nz` (or anywhere else) at runtime
-- Built on `nginxinc/nginx-unprivileged`, runs as an unprivileged user
-  (`uid 101`), no root anywhere in the chain
-- gzip compression and baseline security headers
-  (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`,
-  `Content-Security-Policy`) configured in `conf/nginx-site.conf`
-- A `/healthz` endpoint backs the image's built-in `HEALTHCHECK`
-- Multi-arch: `linux/amd64`, `linux/arm/v6`, `linux/arm/v7`, `linux/arm64/v8`
+- Content is entirely local — nothing gets fetched from `asciimation.co.nz`
+  or anywhere else once it's running
+- Built on `nginxinc/nginx-unprivileged`, runs as `uid 101`. No root, anywhere
+- gzip on, plus the usual security headers (`X-Content-Type-Options`,
+  `X-Frame-Options`, `Referrer-Policy`, `Content-Security-Policy`) — see
+  `conf/nginx-site.conf` if you want the specifics
+- `/healthz` backs the built-in `HEALTHCHECK`, so it actually means something
+- Multi-arch: `amd64`, `arm/v6`, `arm/v7`, `arm64/v8`
 
 ## Keeping the animation content up to date
 
-The embedded animation data (`src/index.html`'s `film` array) is mirrored
-from the upstream site rather than hand-maintained, since upstream adds new
-scenes from time to time. Three ways to keep it in sync:
+Upstream adds new scenes every so often, and I'm not going to remember to
+go re-mirror the site by hand every time. So:
 
-- **Manually**: `python3 scripts/update_film_data.py` — fetches the current
-  content from upstream and splices it in, leaving the player's own code
-  and everything intentionally excluded (upstream's ads, analytics, and
-  links to pages this image doesn't mirror) untouched.
-- **On demand from GitHub**: run the *Update film data* workflow from the
-  Actions tab — does the same thing, then opens a PR with the diff instead
-  of pushing straight to `master`.
-- **Automatically checked weekly**: the *Check content freshness* workflow
-  runs `scripts/check_film_freshness.py` on a schedule and opens a
-  `content-freshness`-labeled issue the first time it detects drift.
+- **Manually**: `python3 scripts/update_film_data.py` — pulls whatever's
+  current upstream and splices it in. Leaves the player code alone, and
+  deliberately doesn't pull in upstream's ads/analytics or links to pages
+  this image doesn't mirror.
+- **On demand, from GitHub**: same thing, run as the *Update film data*
+  workflow from the Actions tab. Opens a PR instead of pushing straight to
+  `master`, so I get a chance to actually look at it first.
+- **On a schedule**: *Check content freshness* runs weekly and opens a
+  `content-freshness` issue the moment it's out of sync, so I don't have to
+  remember to check either.
 
 ## Testing / CI
 
-Every push/PR that touches the image (`Dockerfile`, `src/**`,
-`conf/nginx-site.conf`) builds the image, boots a real container, and
-asserts on its actual behavior rather than just that it builds: page
-structure, gzip, security headers, static asset serving, non-root/no-sudo/
-no-world-writable-files, and a Playwright script confirming the animation
-actually advances frames and that the transport controls (`Stop()`,
-`Play()`, etc.) work. See `.github/workflows/test.yml`.
+I don't trust "the image built" as proof that anything actually works, so
+every push/PR touching the image builds it, boots a real container, and
+pokes at it: page structure, gzip, the security headers, static assets,
+non-root/no-sudo/no-world-writable-files, and a Playwright script that
+checks the animation actually advances frames and that `Stop()`/`Play()`
+etc. do what they say. See `.github/workflows/test.yml` if you want the
+gory details.
 
-`.woodpecker.yml` handles the actual multi-arch build and Docker Hub push
-on a successful merge to `master`.
+`.woodpecker.yml` does the actual multi-arch build and Docker Hub push once
+something's merged to `master`.
 
 ## Tags
 
@@ -87,13 +87,14 @@ on a successful merge to `master`.
 
 ## Credits
 
-- [Simon Jansen](https://www.asciimation.co.nz) created the original
-  asciimation.
-- Notes from Mike Edwards, author of the player script this is based on:
+Not my work, I just packaged it up:
+
+- [Simon Jansen](https://www.asciimation.co.nz) made the original asciimation.
+- Notes from Mike Edwards, who wrote the player script this is based on:
   > Replacement telnet at asciimation.mirkwood.net:23/24. Port 23 is the
   > last released Star Wars asciimation by Simon Jansen, and port 24 is
   > Jansen's other goofy asciimation, The death of Jar Jar Binks.
 
 ## License
 
-[MIT](LICENCE.txt)
+MIT, see [LICENCE.txt](LICENCE.txt).
