@@ -2,10 +2,9 @@
 
 Self hosted, self contained Docker image of the classic
 [www.asciimation.co.nz/Blinkenlights](https://www.asciimation.co.nz/Blinkenlights)
-ASCII Star Wars animation. I originally just grabbed the files straight off
-the site and stuck them in a container — everything runs client-side in the
-browser, nothing leaves the container, no ads, no analytics phoning home.
-Which is more than you can say for the actual site.
+ASCII Star Wars animation. Same clone as the original site — everything
+runs client-side in the browser — just with no ads and no analytics, and
+completely self hosted.
 
 [![status-badge](https://woodpecker.modem7.com/api/badges/4/status.svg?events=push%2Cmanual)](https://woodpecker.modem7.com/repos/4)
 [![Test](https://github.com/modem7/docker-starwars/actions/workflows/test.yml/badge.svg)](https://github.com/modem7/docker-starwars/actions/workflows/test.yml)
