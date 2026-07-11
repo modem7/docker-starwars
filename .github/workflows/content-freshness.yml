@@ -1,0 +1,48 @@
+name: Check content freshness
+
+on:
+  schedule:
+    # Weekly - upstream adds new scenes on the order of months, not days,
+    # so there's no value in checking more often than this.
+    - cron: "0 6 * * 1"
+  push:
+    paths:
+      - scripts/asciimation_sync.py
+      - scripts/check_film_freshness.py
+      - .github/workflows/content-freshness.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Check film data freshness
+        id: freshness
+        continue-on-error: true
+        run: python3 scripts/check_film_freshness.py
+
+      - name: Open tracking issue if stale
+        if: steps.freshness.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          existing=$(gh issue list --label content-freshness --state open --json number --jq 'length')
+          if [ "$existing" -gt 0 ]; then
+            echo "An open content-freshness issue already exists, skipping."
+          else
+            gh issue create \
+              --title "Asciimation content is out of date" \
+              --label content-freshness \
+              --body "The scheduled content-freshness check found that \`src/index.html\`'s film data no longer matches upstream (https://www.asciimation.co.nz/Blinkenlights/). Run \`python3 scripts/update_film_data.py\`, review the diff, rebuild/test the image, and open a PR. This issue will need to be closed manually once that's done - the check doesn't auto-close it, to avoid closing an issue someone is still actively working."
+
+      - name: Fail the job if stale
+        if: steps.freshness.outcome == 'failure'
+        run: exit 1
