@@ -1,0 +1,83 @@
+when:
+  - event: [push, manual]
+    branch: master
+    path:
+      # Scoped to what actually gets COPYed into the image in the Dockerfile —
+      # docs/CI-only changes elsewhere shouldn't trigger a rebuild/republish.
+      include:
+        - Dockerfile
+        - src/**
+        - conf/nginx-site.conf
+        - .woodpecker.yml
+
+steps:
+  - name: lint-dockerfile
+    image: hadolint/hadolint:latest-alpine
+    commands:
+      - hadolint --version
+      - hadolint Dockerfile
+
+  - name: build-and-push
+    image: woodpeckerci/plugin-docker-buildx
+    privileged: true
+    depends_on: [lint-dockerfile]
+    settings:
+      repo: ${CI_REPO}
+      dockerfile: Dockerfile
+      purge: true
+      compress: true
+      build_args:
+        BUILDKIT_INLINE_CACHE: "1"
+      cache_from:
+        - type=registry\,ref=${CI_REPO}:latest
+      platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      tags: latest
+
+  - name: pushrm-dockerhub
+    image: chko/docker-pushrm
+    depends_on:
+      - build-and-push
+    environment:
+      DOCKER_USER:
+        from_secret: docker_username
+      DOCKER_PASS:
+        from_secret: docker_password
+      PUSHRM_FILE: README.md
+      PUSHRM_SHORT: BlinkenLights ASCII Star Wars Clone
+      PUSHRM_TARGET: ${CI_REPO}
+    when:
+      - status: [success]
+
+  # Same fork/build of GowerStreet/woodpecker-slack as the other repos'
+  # pipelines - status still set explicitly per step since Woodpecker
+  # doesn't expose CI_PIPELINE_STATUS as a container env var
+  # (woodpecker-ci/woodpecker#4337).
+  - name: notify-slack-success
+    image: ghcr.io/modem7/woodpecker-slack:latest
+    pull: true
+    depends_on:
+      - build-and-push
+    settings:
+      status: success
+      description: docker-starwars build
+      webhook:
+        from_secret: slack_hook
+    when:
+      - status: [success]
+
+  - name: notify-slack-failure
+    image: ghcr.io/modem7/woodpecker-slack:latest
+    pull: true
+    depends_on:
+      - build-and-push
+    settings:
+      status: failure
+      description: docker-starwars build
+      webhook:
+        from_secret: slack_hook
+    when:
+      - status: [failure]
