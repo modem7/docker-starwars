@@ -30,7 +30,7 @@ steps:
         BUILDKIT_INLINE_CACHE: "1"
       cache_from:
         - type=registry\,ref=${CI_REPO}:latest
-      platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
+      platforms: linux/amd64,linux/arm64/v8
       username:
         from_secret: docker_username
       password:
