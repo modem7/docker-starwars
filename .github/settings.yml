@@ -4,7 +4,7 @@
 repository:
   name: docker-starwars
   description: >-
-    Self-hosted, self-contained Docker image of the classic
+    Self hosted, self contained Docker image of the classic
     www.asciimation.co.nz/Blinkenlights ASCII Star Wars animation.
   homepage: https://hub.docker.com/r/modem7/docker-starwars
   topics: docker, star-wars, ascii-art, ascii, nginx, self-hosted, homelab, docker-compose
