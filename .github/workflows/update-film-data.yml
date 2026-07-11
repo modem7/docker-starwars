@@ -1,0 +1,65 @@
+name: Update film data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Skip if an update PR is already open
+        id: existing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          count=$(gh pr list --label content-freshness --state open --json number --jq 'length')
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: Run update script
+        if: steps.existing.outputs.count == '0'
+        run: python3 scripts/update_film_data.py
+
+      - name: Check whether anything changed
+        id: diff
+        if: steps.existing.outputs.count == '0'
+        run: |
+          if git diff --quiet -- src/index.html; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open a PR with the refreshed content
+        if: steps.existing.outputs.count == '0' && steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          branch="content/update-film-data-$(date -u +%Y%m%d%H%M%S)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add src/index.html
+          git commit -m "Update asciimation film data from upstream"
+          git push -u origin "$branch"
+          gh pr create \
+            --title "Update asciimation film data from upstream" \
+            --label content-freshness \
+            --body "Triggered manually via the \"Update film data\" workflow. Pulls the current film array + footer note from https://www.asciimation.co.nz/Blinkenlights/ via \`scripts/update_film_data.py\`, leaving engine code and the deliberately-excluded ads/tracking/dead-links untouched. Review the diff and let the Test workflow finish before merging."
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.existing.outputs.count }}" != '0' ]; then
+            echo "::notice::An update PR is already open - skipped."
+          elif [ "${{ steps.diff.outputs.changed }}" != 'true' ]; then
+            echo "::notice::Film data is already up to date - nothing to do."
+          else
+            echo "::notice::Opened a PR with the refreshed film data."
+          fi
