@@ -44,6 +44,20 @@ def fetch_live_page(url: str = LIVE_URL, timeout: int = 30) -> bytes:
     return raw
 
 
+def normalize_line_endings(data: bytes) -> bytes:
+    """Collapse CRLF to LF.
+
+    Upstream's HTML has stray CRLF sequences mixed in with LF. This
+    repo's .gitattributes normalizes all text files to LF, so anything
+    checked in - and anything cloned back out - never keeps a raw CR.
+    Comparing/writing pre-normalized bytes here means the freshness
+    check compares like with like (instead of permanently reporting
+    "stale" against a byte git will strip anyway), and a fresh sync
+    doesn't quietly get rewritten by git out from under it.
+    """
+    return data.replace(b"\r\n", b"\n")
+
+
 def extract_film_block(data: bytes) -> bytes:
     """Return the `var film = '...';` slice, engine code excluded."""
     start = data.find(FILM_START)
@@ -52,7 +66,7 @@ def extract_film_block(data: bytes) -> bytes:
     end = data.find(FILM_END, start)
     if end == -1:
         raise ValueError("could not find \"if(film)\" end marker after film data")
-    return data[start:end]
+    return normalize_line_endings(data[start:end])
 
 
 def film_hash(block: bytes) -> str:
