@@ -115,7 +115,7 @@ jobs:
           [ "$count" -eq 0 ]
 
       - name: Set up Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
