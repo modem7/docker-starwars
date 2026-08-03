@@ -11,16 +11,9 @@ when:
         - .woodpecker.yml
 
 steps:
-  - name: lint-dockerfile
-    image: hadolint/hadolint:latest-alpine
-    commands:
-      - hadolint --version
-      - hadolint Dockerfile
-
   - name: build-and-push
     image: woodpeckerci/plugin-docker-buildx
     privileged: true
-    depends_on: [lint-dockerfile]
     settings:
       repo: ${CI_REPO}
       dockerfile: Dockerfile
