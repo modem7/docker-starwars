@@ -9,7 +9,7 @@ COPY --chown=$UID:0 --chmod=644 conf/nginx-site.conf /etc/nginx/conf.d/default.c
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=10s \
-    CMD curl -fSs 127.0.0.1:8080/healthz || exit 1
+    CMD ["curl", "-fSs", "127.0.0.1:8080/healthz"]
 
 STOPSIGNAL SIGQUIT
 
