@@ -42,6 +42,7 @@ jobs:
               --title "Asciimation content is out of date" \
               --label content-freshness \
               --body "The scheduled content-freshness check found that \`src/index.html\`'s film data no longer matches upstream (https://www.asciimation.co.nz/Blinkenlights/). Run \`python3 scripts/update_film_data.py\`, review the diff, rebuild/test the image, and open a PR. This issue will need to be closed manually once that's done - the check doesn't auto-close it, to avoid closing an issue someone is still actively working."
+          fi
 
       - name: Fail the job if stale
         if: steps.freshness.outcome == 'failure'
