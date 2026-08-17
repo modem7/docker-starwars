@@ -52,7 +52,8 @@ jobs:
           gh pr create \
             --title "Update asciimation film data from upstream" \
             --label content-freshness \
-            --body "Triggered manually via the \"Update film data\" workflow. Pulls the current film array + footer note from https://www.asciimation.co.nz/Blinkenlights/ via \`scripts/update_film_data.py\`, leaving engine code and the deliberately-excluded ads/tracking/dead-links untouched. Review the diff and let the Test workflow finish before merging."
+            --assignee modem7 \
+            --body "Triggered via the \"Update film data\" workflow (manually, or automatically by the content-freshness check). Pulls the current film array + footer note from https://www.asciimation.co.nz/Blinkenlights/ via \`scripts/update_film_data.py\`, leaving engine code and the deliberately-excluded ads/tracking/dead-links untouched. Review the diff and let the Test workflow finish before merging."
 
       - name: Summary
         run: |

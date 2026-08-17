@@ -15,6 +15,7 @@ on:
 permissions:
   contents: read
   issues: write
+  actions: write
 
 jobs:
   check:
@@ -42,8 +43,14 @@ jobs:
               --title "Asciimation content is out of date" \
               --label content-freshness \
               --assignee modem7 \
-              --body "The scheduled content-freshness check found that \`src/index.html\`'s film data no longer matches upstream (https://www.asciimation.co.nz/Blinkenlights/). Run \`python3 scripts/update_film_data.py\`, review the diff, rebuild/test the image, and open a PR. This issue will need to be closed manually once that's done - the check doesn't auto-close it, to avoid closing an issue someone is still actively working."
+              --body "The scheduled content-freshness check found that \`src/index.html\`'s film data no longer matches upstream (https://www.asciimation.co.nz/Blinkenlights/). The \"Update film data\" workflow has been triggered automatically to open a PR with the refresh. This issue will need to be closed manually once that PR is merged - the check doesn't auto-close it, to avoid closing an issue someone is still actively working."
           fi
+
+      - name: Trigger automated update PR
+        if: steps.freshness.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-film-data.yml --ref master
 
       - name: Fail the job if stale
         if: steps.freshness.outcome == 'failure'
